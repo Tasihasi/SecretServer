@@ -1,24 +1,36 @@
 import React from 'react';
+import  {useState} from 'react';
+
 import logo from './logo.svg';
 import './App.css';
+import Save from  './Save';
+import Retrive from './Retrive';
 
 function App() {
+  // State to track which form is currently visible
+  const [isSaveForm, setIsSaveForm] = useState(true);
+
+  // Toggle function to switch between forms
+  const toggleForm = () => {
+    setIsSaveForm(!isSaveForm);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* Button to toggle between forms */}
+      <button onClick={toggleForm}>
+        {isSaveForm ? 'Switch to Retrieve' : 'Switch to Save'}
+      </button>
+
+      {/* Conditional rendering based on the state */}
+      {isSaveForm ? (
+        <div>
+          <Save />
+        </div>
+      ) : (
+        <div>
+          <Retrive />
+        </div>
+      )}
     </div>
   );
 }
