@@ -34,7 +34,7 @@ const Save: React.FC = () => {
     // Add logic to submit the form data to the server here
     
 
-    const url = 'http://127.0.0.1:5000/secret';
+    const url = 'https://secretserverbackend-production.up.railway.app/secret';
 
     try {
       // Make a POST request to the server

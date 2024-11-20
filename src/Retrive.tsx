@@ -20,7 +20,7 @@ const Retrieve: React.FC = () => {
 
     try {
       // Send the hash to the backend to fetch the secret
-      const response = await fetch(`http://127.0.0.1:5000/secret/${hash}`, {
+      const response = await fetch(`https://secretserverbackend-production.up.railway.app/secret/${hash}`, {
         method: 'GET',
       });
 
