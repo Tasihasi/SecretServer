@@ -1,46 +1,63 @@
-# Getting Started with Create React App
+# Secret Management React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple React app built with TypeScript that allows users to store a secret text and retrieve it later using a unique hash. The app provides two main features:
 
-## Available Scripts
+**Save Secret:** Allows users to store a secret, specify how many times it can be retrieved, and set an expiry time for the secret.
 
-In the project directory, you can run:
+**Retrieve Secret:** Allows users to retrieve a previously stored secret using its unique hash.
 
-### `npm start`
+The app interacts with a backend API to store and retrieve secrets.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### The backend GitHub Repo: https://github.com/Tasihasi/SecretServerBackEnd
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Features
 
-### `npm test`
+## Save Secret:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Users can input a secret text.
 
-### `npm run build`
+Users can set the number of times the secret can be retrieved.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Users can set the expiry date for the secret (in minutes).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+After submission, the app generates a unique hash that can be used to retrieve the secret.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The hash is copied to the clipboard with one click for easy sharing.
 
-### `npm run eject`
+## Retrieve Secret:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Users can input a hash to retrieve the corresponding secret text.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If the hash is valid and the secret has not expired, the secret is displayed.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+In case of errors (invalid hash or expired secret), the app shows an appropriate error message.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# How It Works 
 
-## Learn More
+## Save Secret
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+When a user enters the secret text, the number of retrievals allowed, and the expiry date (in minutes), the data is sent to the backend via a POST request. If the submission is successful, the server returns a unique hash that the user can use to retrieve the secret. The hash is displayed and can be copied to the clipboard.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Retrieve Secret
+
+To retrieve a secret, the user enters the hash in the corresponding field and submits the form. A GET request is made to the backend with the hash to fetch the secret. If the hash is valid and the secret has not expired, it will be displayed on the screen. Otherwise, an error message is shown.
+
+# Technologies Used
+
+**React** JavaScript library for building user interfaces.
+**TypeScript** A typed superset of JavaScript that provides type safety and improves development experience.
+**CSS** For styling the components (you can customize styles according to your preference).
+
+# Backend
+
+This app requires a **backend server** and **database** to handle secret storage and retrieval.  
+
+### The backend GitHub Repo: https://github.com/Tasihasi/SecretServerBackEnd
+
+The backend API endpoints used are:
+
+    POST /secret: To save a new secret.
+    GET /secret/{hash}: To retrieve the secret using its hash.
+
+Make sure the backend is running and properly configured before using the app.
+
